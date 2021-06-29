@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import Header from '../JournalEntryComponent/Header/Header';
-import ResponsiveDrawer from '../JournalEntryComponent/SideDrawer/SideDrawer';
+import Header from '../../component/UI/MaterialUIComponent/Header/Header';
+import ResponsiveDrawer from '../../component/UI/MaterialUIComponent/SideDrawer/SideDrawer';
 
 const JournalEntry = () => {
 
