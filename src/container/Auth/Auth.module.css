@@ -1,0 +1,45 @@
+.auth {
+    margin-top: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-align: left;
+}
+
+.auth > div {
+    width: fit-content;
+}
+
+.auth > div:nth-child(2) {
+    margin: 20px 0;
+}
+
+.auth > div > h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.auth > div > p {
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.auth > div > form {
+    text-align: center;
+}
+
+.signUp {
+    margin-top: 25vh;
+}
+
+.auth_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.google_login {
+    max-width: 50%;
+    margin: 50px 25%;
+}

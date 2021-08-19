@@ -11,6 +11,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Slide, useScrollTrigger } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +38,15 @@ const HideOnScroll = (props) => {
 }
 
 const Header = (props) => {
+
+	let name = useSelector(state => state.auth.name)
+	const email = useSelector(state => state.auth.email)
+
+	// checks if the name of logged in user is available, else displays email.
+	if(name === null || name === '' || name === undefined || name === "undefined") {
+		name = email
+	}
+
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
@@ -59,7 +69,7 @@ const Header = (props) => {
 						</IconButton>
 						<Typography variant="h6" className={classes.title}>
 							Journalify
-          </Typography>
+          				</Typography>
 						<div>
 							<IconButton
 								aria-label="account of current user"
@@ -85,7 +95,7 @@ const Header = (props) => {
 								open={open}
 								onClose={handleClose}
 							>
-								<MenuItem onClick={handleClose}>Profile</MenuItem>
+								<MenuItem onClick={handleClose}>{name}</MenuItem>
 								<MenuItem>
 									<NavLink to="/logout">Logout</NavLink>
 								</MenuItem>

@@ -6,7 +6,7 @@ const SimpleContainer = (props) => {
     return (
         <React.Fragment>
             <CssBaseline />
-            <Container maxWidth="xl">
+            <Container >
                 {props.children}
             </Container>
         </React.Fragment>

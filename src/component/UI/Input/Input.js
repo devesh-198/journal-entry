@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './Input.css';
+import classes from './Input.module.css';
 const input = (props) => {
     let inputElement = null;
     const inputClasses = [classes.InputElement];
@@ -53,7 +53,7 @@ const input = (props) => {
 
     return(
         <div className={classes.Input}>
-            <label className={classes.Lable}>{props.lable}</label>
+            {typeof(props.lable) !== 'undefined' && <label className={classes.Lable}>{props.lable}</label>}
             {inputElement}
         </div>
     )

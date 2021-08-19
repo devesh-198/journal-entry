@@ -1,0 +1,70 @@
+.mainpage_layout {
+    background: rgba(0, 255, 255, 0.5);
+    background: linear-gradient(180deg, rgba(0, 200, 255, 1) 0%, rgba(0, 225, 255, 0.8) 33%, rgba(0, 255, 255, 0.5) 66%, rgba(255, 255, 255, 1) 100%);
+    height: 100vh;
+    width: 100%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.heading {
+    text-align: left;
+    width: fit-content;
+    margin: 20vh 0 0 20vw;
+}
+
+.heading > h1{
+    margin: 0;
+    font-size: 12vw;
+}
+
+.heading > h3 {
+    font-size: 4vw;
+    font-style: italic;
+}
+
+.auth_block {
+    margin: 1vh 0 0 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: fit-content;
+}
+
+.auth_inner_block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.auth_block > button, .auth_inner_block > button {
+    cursor: pointer;
+    margin: 2px 0 2px 0;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 2.5vw;
+}
+
+.auth_inner_block > button {
+    width: 50%;
+}
+
+.auth_inner_block > button:nth-child(1) {
+    border-right: 1px solid black;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.auth_inner_block > button:nth-child(2) {
+    border-left: 1px solid black;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}

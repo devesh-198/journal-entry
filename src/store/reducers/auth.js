@@ -11,6 +11,9 @@ const authSuccess = (state, action) => {
     return (
         state.token = action.payload.idToken,
         state.userId = action.payload.userId,
+        state.name = action.payload.name,
+        state.email = action.payload.email,
+        state.isNewUser = action.payload.isNewUser,
         state.error = null,
         state.loading = false
     )
@@ -26,7 +29,9 @@ const authFail = (state, action) => {
 const authLogout = (state, action) => {
     return (
         state.token = null,
-        state.userId = null
+        state.userId = null,
+        state.name = null,
+        state.email = null
     )
 }
 
@@ -43,7 +48,10 @@ const authSlice = createSlice({
         userId: null,
         error: null,
         loading: false,
-        authRedirectPath: '/'
+        authRedirectPath: '/',
+        name: null,
+        email: null,
+        isNewUser: null
     },
     reducers: {
         AUTH_START: (state, action) => {

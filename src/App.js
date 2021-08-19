@@ -10,6 +10,7 @@ import logout from './component/Logout/Logout';
 import * as actions from './store/actions/index';
 import Spinner from './component/UI/Spinner/Spinner';
 
+// initializing firebaseConfig object with "DOMContentLoaded" for it to excute after the HTML is loaded.
 document.addEventListener("DOMContentLoaded", event => {
   var firebaseConfig = {
     apiKey: "AIzaSyBV9i4-4qlOjhVGoVOx4eg7THddYGbsuCs",

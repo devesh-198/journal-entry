@@ -1,20 +1,28 @@
 import * as actionTypes from './actionTypes';
+
 import {
     AUTH_START, 
     AUTH_SUCCESS, 
     AUTH_FAIL, 
     AUTH_LOGOUT, 
-    SET_AUTH_REDIRECT_PATH
+    SET_AUTH_REDIRECT_PATH,
 } from '../reducers/auth';
+
+import {
+	LOG_INITIAL_DATA
+} from '../reducers/journalEntry';
 
 export const authStart = () => {
 	return AUTH_START()
 }
 
-export const authSuccess = (token, userId) => {
+export const authSuccess = (token, userId, diaplayName, logInEmail, isNewUser) => {
     return AUTH_SUCCESS({
         idToken: token,
-		userId: userId
+		userId: userId,
+		name: diaplayName,
+		email: logInEmail,
+		isNewUser: isNewUser
     })
 }
 
@@ -41,12 +49,13 @@ export const checkAuthTimeout = (expirationTime) => {
 	}
 }
 
-export const auth = (email, password, isSignup) => {
+export const auth = (email, password, isSignup, journalData) => {
 	return {
     type: actionTypes.AUTH_USER,
     email: email,
     password: password,
-    isSignup: isSignup
+    isSignup: isSignup,
+	journalData: journalData
   }
 }
 
@@ -60,4 +69,28 @@ export const authCheckState = () => {
 	return {
     type: actionTypes.AUTH_CHECK_STATE
   }
+}
+
+export const loadInitialData = (token, userId) => {
+	return {
+		type: actionTypes.LOAD_INITIAL_DATA,
+		token: token,
+		userId: userId
+	}
+}
+
+export const logInitialData = (journalData, userId) => {
+	return LOG_INITIAL_DATA({
+		journalData: journalData,
+		userId: userId
+	})
+}
+
+export const postInitialDataOnSignup = (journalData, currentToken, userId) => {
+	return {
+		type: actionTypes.POST_INITIAL_DATA_ON_SIGNUP,
+		journalData: journalData,
+		currentToken: currentToken,
+		userId: userId
+	}
 }
