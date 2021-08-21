@@ -17,6 +17,16 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     marginBottom: 10,
   },
+  journalNamePaper: {
+    width: 'fit-content',
+    backgroundColor: '#F50057',
+    color: 'white',
+    textAlign: 'center',
+    marginBottom: 10,
+    marginTop: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
   button: {
     marginTop: 10,
     marginBottom: 10,
@@ -35,9 +45,9 @@ const JournalEntry = () => {
   const [newEntry, setNewEntry] = useState()
 
   const currentJournalKey = useSelector(state => state.journalEntry.journalKey)
-  const journalEntryArray = useSelector(state => state.journalEntry.journals[currentJournalKey].entries)
+  const journalEntryArray = useSelector(state => state.journalEntry.journals)
   const currentToken = useSelector(state => state.auth.token)
-	const currentUserId = useSelector(state => state.auth.userId)
+	const currentUserId = useSelector(state => state.auth.userId) 
 
   const dispatch = useDispatch()
 
@@ -62,9 +72,24 @@ const JournalEntry = () => {
     journalPaperLeftMargin = 0
   }
 
+  //component to add new entry to the journal
+  const addNewEntry = (
+    <div className={classes.button}>
+      <Button
+        onClick={() => setShowNewEntryField(!showNewEntryField)}
+        style={{marginLeft: journalPaperLeftMargin}}
+        variant="contained"
+        color="primary"
+        startIcon={<Icon color="secondary">add_circle</Icon>}
+      >
+        Add new entry
+      </Button>
+    </div>
+  )
+
   // This displays the journal entries
-  const displayJournalDetails = (
-    journalEntryArray.map(el => {
+  const displayJournalDetails = () => {
+    const displayJournalEntries = journalEntryArray[currentJournalKey].entries.map(el => {
       return (
         <Paper style={{marginLeft: journalPaperLeftMargin}} className={classes.journalPaper}>
           <Typography className={classes.entryElement}>
@@ -73,7 +98,19 @@ const JournalEntry = () => {
         </Paper>
       )
     })
-  )
+
+    return (
+      <>
+        <Paper style={{marginLeft: journalPaperLeftMargin}} className={classes.journalNamePaper}>
+          <Typography style={{fontSize: 20}} className={classes.entryElement}>
+            {journalEntryArray[currentJournalKey].journalName}
+          </Typography>
+        </Paper>
+        {addNewEntry}
+        {displayJournalEntries}
+      </>
+    )
+  }
 
   // Handles the logging of new entry to store and firebse.
   const logNewEntryToStore = (event) => {
@@ -103,21 +140,6 @@ const JournalEntry = () => {
     )
   }
 
-  //component to add new entry to the journal
-  const addNewEntry = (
-    <div className={classes.button}>
-      <Button
-        onClick={() => setShowNewEntryField(!showNewEntryField)}
-        style={{marginLeft: journalPaperLeftMargin}}
-        variant="contained"
-        color="primary"
-        startIcon={<Icon color="secondary">add_circle</Icon>}
-      >
-        Add new entry
-      </Button>
-    </div>
-  )
-
   return (
     <>
       <Header handleDrawerToggle={handleDrawerToggle}/>
@@ -125,9 +147,8 @@ const JournalEntry = () => {
           <ResponsiveDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
         </SimpleContainer>
         <SimpleContainer>
-          {addNewEntry}
           {newEntryFeild}
-          {displayJournalDetails}
+          {displayJournalDetails()}
         </SimpleContainer>
     </>
   )

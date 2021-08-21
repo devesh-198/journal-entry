@@ -34,7 +34,7 @@ const Auth = props => {
 			elementType: 'input',
 			elementConfig: {
 				type: 'password',
-				placeholder: 'min 8 character',
+				placeholder: 'password:min 8 character',
 			},
 			value: '',
 			validation: {
