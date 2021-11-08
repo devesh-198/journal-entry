@@ -87,31 +87,6 @@ const JournalEntry = () => {
     </div>
   )
 
-  // This displays the journal entries
-  const displayJournalDetails = () => {
-    const displayJournalEntries = journalEntryArray[currentJournalKey].entries.map(el => {
-      return (
-        <Paper style={{marginLeft: journalPaperLeftMargin}} className={classes.journalPaper}>
-          <Typography className={classes.entryElement}>
-            {el}
-          </Typography>
-        </Paper>
-      )
-    })
-
-    return (
-      <>
-        <Paper style={{marginLeft: journalPaperLeftMargin}} className={classes.journalNamePaper}>
-          <Typography style={{fontSize: 20}} className={classes.entryElement}>
-            {journalEntryArray[currentJournalKey].journalName}
-          </Typography>
-        </Paper>
-        {addNewEntry}
-        {displayJournalEntries}
-      </>
-    )
-  }
-
   // Handles the logging of new entry to store and firebse.
   const logNewEntryToStore = (event) => {
     event.preventDefault()
@@ -140,6 +115,32 @@ const JournalEntry = () => {
     )
   }
 
+  // This displays the journal entries
+  const displayJournalDetails = () => {
+    const displayJournalEntries = journalEntryArray[currentJournalKey].entries.map(el => {
+      return (
+        <Paper style={{marginLeft: journalPaperLeftMargin}} className={classes.journalPaper}>
+          <Typography className={classes.entryElement}>
+            {el}
+          </Typography>
+        </Paper>
+      )
+    })
+
+    return (
+      <>
+        <Paper style={{marginLeft: journalPaperLeftMargin}} className={classes.journalNamePaper}>
+          <Typography style={{fontSize: 20}} className={classes.entryElement}>
+            {journalEntryArray[currentJournalKey].journalName}
+          </Typography>
+        </Paper>
+        {addNewEntry}
+        {newEntryFeild}
+        {displayJournalEntries}
+      </>
+    )
+  }
+
   return (
     <>
       <Header handleDrawerToggle={handleDrawerToggle}/>
@@ -147,7 +148,6 @@ const JournalEntry = () => {
           <ResponsiveDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
         </SimpleContainer>
         <SimpleContainer>
-          {newEntryFeild}
           {displayJournalDetails()}
         </SimpleContainer>
     </>
